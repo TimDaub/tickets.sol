@@ -1,1 +1,5 @@
 /out
+.DS_Store
+.sethrc
+key1.json
+lib/.DS_Store

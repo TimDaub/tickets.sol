@@ -3,25 +3,11 @@ pragma solidity ^0.8.6;
 
 import "indexed-sparse-merkle-tree/StateTree.sol";
 
-contract Guestbook {
+contract Tickets {
     bytes32 public root;
-    address owner;
-    uint256 size;
-    event Entry(
-        address indexed _from,
-        string indexed _entry,
-        uint256 indexed _amount
-    );
 
     constructor(address _owner) {
         root = StateTree.empty();
-        size = 0;
-        owner = _owner;
-    }
-
-    function withdraw() public {
-        require(msg.sender == owner);
-        payable(msg.sender).transfer(address(this).balance);
     }
 
     function enter(

@@ -10,6 +10,12 @@ contract Tickets {
     mapping(address => uint256) public prices;
     mapping(address => uint256) public indexes;
 
+	event Sale(
+        address indexed _provider,
+        address indexed _from,
+        uint256 indexed _index
+    );
+
     function init(uint256 _price) external {
         require(roots[msg.sender] == 0x0, "already initialized");
         roots[msg.sender] = StateTree.empty();
@@ -41,6 +47,7 @@ contract Tickets {
             roots[_provider]
         );
         indexes[_provider] += 1;
+		emit Sale(_provider, msg.sender, index);
     }
 
 	function validate(
